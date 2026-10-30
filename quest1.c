@@ -14,7 +14,7 @@ int main(void) {
         for (int i = 0; command[i] != '\0'; i++){
             command[i] = toupper(command[i]);
         }
-
+        
         if (strcmp(command, "DONE") == 0) {
             break;
         }

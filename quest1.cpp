@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+    
     int startPoint = 50;
     int x = 0;
     string command;
