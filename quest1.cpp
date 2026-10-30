@@ -33,7 +33,7 @@ int main() {
         }
 
         if (direction == "R") {
-            startPoint = (startPoint + moveSteps) % 100;
+            startPoint = (startPoint + moveSteps +100) % 100;
 
             if (startPoint == 0) {
                 x++;
