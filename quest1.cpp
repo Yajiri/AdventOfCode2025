@@ -24,16 +24,16 @@ int main() {
         char direction = command[0];
         int moveSteps = stoi(command.substr(1));
 
-        if (direction == "L") {
+        if (direction == 'L') {
             startPoint = (startPoint + moveSteps) % 100;
 
-            if (startPoint) {
+            if (startPoint == 0) {
                 x++;
             }
         }
 
-        if (direction == "R") {
-            startPoint = (startPoint + moveSteps +100) % 100;
+        if (direction == 'R') {
+            startPoint = (startPoint - moveSteps + 100) % 100;
 
             if (startPoint == 0) {
                 x++;
