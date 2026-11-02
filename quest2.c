@@ -13,7 +13,8 @@ struct Range ranges[] = {
     {1188511880,1188511890},
     {222220,222224},
     {446443,446449},
-    {38593856,38593852}
+    {1698522,1698528},
+    {38593856,38593862}
 };
 
 int main(void) {
@@ -28,7 +29,6 @@ int main(void) {
             int len = strlen(s);
 
             if (len % 2 != 0) {
-                invalidNumberValue++;
                 continue;
             }
             int half = len / 2;
@@ -42,7 +42,7 @@ int main(void) {
             }
             if (match) {
                 printf("%d\n", n);
-                invalidNumberValue++;
+                invalidNumberValue = invalidNumberValue + n;
             } 
         }
     }
