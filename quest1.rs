@@ -14,7 +14,7 @@ fn main(){
         
             let command = command.trim().to_uppercase();
 
-            if command = "DONE" {
+            if command == "DONE" {
                 break;
             }
 
