@@ -1,6 +1,5 @@
 record Range(int start, int end) {}
 
-
 public class quest2 {
     public static void main(String[] args){
 
