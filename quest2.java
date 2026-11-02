@@ -34,6 +34,7 @@ public class quest2 {
                 }
 
             }
-        }  System.out.println("The amount of invalid numbers are: " + invalidNumberValue);  
+        }  
+    System.out.println("The amount of invalid numbers are: " + invalidNumberValue);  
     }  
 }
