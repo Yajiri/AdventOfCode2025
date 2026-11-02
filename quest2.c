@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 struct Range {
     int start;
@@ -14,3 +15,38 @@ struct Range ranges[] = {
     {446443,446449},
     {38593856,38593852}
 };
+
+int main(void) {
+    int invalidNumberValue = 0;
+    int rangeCount = sizeof(ranges) / sizeof(ranges[0]);
+
+    for (int i = 0; i < rangeCount; i++) {
+        for (int n = ranges[i].start; n <= ranges[i].end; n++) {
+
+            char s[20];
+            sprintf(s, "%d", n);
+            int len = strlen(s);
+
+            if (len % 2 != 0) {
+                invalidNumberValue++;
+                continue;
+            }
+            int half = len / 2;
+            int match = 1;
+
+            for (int j = 0; j < half; j++) {
+                if (s[j] != s[j + half]) {
+                    match = 0;
+                    break;
+                }
+            }
+            if (match) {
+                printf("%d\n", n);
+                invalidNumberValue++;
+            } 
+        }
+    }
+
+    printf("Invalid count: %d\n", invalidNumberValue);
+    return 0;
+}
