@@ -27,7 +27,7 @@ public class quest3 {
             }
         }
         //Initiates the second loop
-        for (int i = startIndex; i < stringOfNumbers.length(); i++) {
+        for (int i = startIndex; i < len; i++) {
             if (stringOfNumbers.charAt(i) - '0' > secondLargest) {
                 secondLargest = stringOfNumbers.charAt(i) - '0'; 
             }
