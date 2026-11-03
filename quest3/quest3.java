@@ -1,3 +1,4 @@
+package quest3;
 import java.util.Scanner;
 
 public class quest3 {

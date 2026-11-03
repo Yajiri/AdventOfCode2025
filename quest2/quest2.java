@@ -1,3 +1,4 @@
+package quest2;
 record Range(int start, int end) {}
 
 public class quest2 {
