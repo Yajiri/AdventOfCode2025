@@ -11,7 +11,7 @@ int main(void) {
     //Ensure that the "%99" is correctly imputed otherwise there won't be any len later and that will ensure that the loops never run.
     scanf("%99s", stringOfNumbers);
 
-    //do This once here instead, if you call the strlen inside the setup for the loop then it recalculates the lenght for each itteration of said loop 
+    //do This once here instead, if you call the strlen inside the setup for the loop then it recalculates the length for each itteration of said loop 
     //and that does matter when the string is longer than in this case. Ensure that this is after the scanf...
     int len = strlen(stringOfNumbers);
 

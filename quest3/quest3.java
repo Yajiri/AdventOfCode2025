@@ -10,9 +10,10 @@ public class quest3 {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please write the number sequence: ");
         String stringOfNumbers = scanner.nextLine();
+        int len = stringOfNumbers.length();
 
         //Stops the search if we find a 9 and moves on to the second loop.
-        for (int i = 0; i < stringOfNumbers.length() - 1; i++){
+        for (int i = 0; i < len - 1; i++){
             if (stringOfNumbers.charAt(i) == '9'){
                 largest = 9;
                 startIndex = i + 1;

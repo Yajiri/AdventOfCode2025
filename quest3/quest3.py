@@ -33,6 +33,3 @@ print("The largest possible number is: ", largest,y, sep="")
 
 #in python you could also use a printf statment like this:
 #print(f"{largest}{y}")
-
-
-        
