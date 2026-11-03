@@ -36,5 +36,6 @@ public class quest5 {
             System.out.println(number + " is not a fresh item");
             }
         }
+        scanner.close();
     }
 }
