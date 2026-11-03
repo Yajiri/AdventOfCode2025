@@ -1,7 +1,7 @@
 largest = 0
 y = 0
 
-stringOfCode = input("Please inout the string of numbers: ").upper()      
+stringOfCode = input("Please input the string of numbers: ").upper()      
 
 i = 0 
 start_index = 0

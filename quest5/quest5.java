@@ -13,7 +13,6 @@ public class quest5 {
             new Range(10, 14),
             new Range(16, 20),
             new Range(12, 18)
-
         };
 
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +29,7 @@ public class quest5 {
                     break;
                 }
             }
+
         if (fresh) {
             System.out.println(number + " is a fresh item");
         } else {
