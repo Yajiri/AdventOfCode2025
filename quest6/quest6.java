@@ -10,7 +10,7 @@ public class quest6 {
         ArrayList<int[]> rows = new ArrayList<>();
 
         while(true) {
-            System.out.println("Please enter the sequence of numbers split by spacing, when done type done:");
+            System.out.println("Please enter the sequence of numbers split by spacing (line by line), when done type done:");
             String lineOfNumbers = scanner.nextLine();
 
             //break the while loop
