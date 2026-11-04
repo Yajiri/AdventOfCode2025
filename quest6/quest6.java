@@ -48,7 +48,7 @@ public class quest6 {
                 }
                 System.out.println("The value of the column is: " + result + " in column " + col);
             } 
-            //adding subtraction and division functions just to be safe... 10
+            //adding subtraction and division functions just to be safe...
             if (operators[col].equals("-")) {
                 int result = rows.get(0)[col];
                 for (int i = 1; i < rows.size(); i++) {
