@@ -18,7 +18,7 @@ public class quest5 {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter numbers separated by spaces:");
         String input = scanner.nextLine();
-        String[] numbers = input.split(" ");
+        String[] numbers = input.split("\\s+");
 
         for (String num : numbers) {
             int number = Integer.parseInt(num);
