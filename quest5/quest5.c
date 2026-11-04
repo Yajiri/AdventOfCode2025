@@ -32,7 +32,7 @@ int main(void) {
     printf("Please enter the numbers separated by space: ");
     fgets(line, sizeof(line),stdin);
 
-    //So this will look for the first " " in the string, and then points to is.
+    //So this will look for the first " " in the string, and then change is to \0 + point to the last element before it in the array.
     char *token = strtok(line, " ");
     //numbers[count++] = atoi(token); This appends the number to my array.
     //token = strtok(NULL, " "); will make it move to the next " " and so on.
