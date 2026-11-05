@@ -28,7 +28,6 @@ public class quest6 {
             }
 
         rows.add(number);
-        System.out.println(Arrays.toString(number));
         }
         System.out.println("Enter operators: ");
         String[] operators = scanner.nextLine().trim().split("\\s+");
@@ -39,14 +38,14 @@ public class quest6 {
                 for (int[] row : rows) {
                     result *= row[col];
                 }
-                System.out.println("The value of the column is: " + result + " in column " + col);
+                System.out.println("The value of column " + (col + 1) + " is " + result);
             } 
             if (operators[col].equals("+")) {
                 int result = 0;
                 for (int[] row : rows) {
                     result += row[col];
                 }
-                System.out.println("The value of the column is: " + result + " in column " + col);
+                System.out.println("The value of column " + (col + 1) + " is " + result);
             } 
             //adding subtraction and division functions just to be safe...
             if (operators[col].equals("-")) {
@@ -54,14 +53,14 @@ public class quest6 {
                 for (int i = 1; i < rows.size(); i++) {
                     result -= rows.get(i)[col];
                 }
-                System.out.println("The value of the column is: " + result + " in column " + col);
+                System.out.println("The value of column " + (col + 1) + " is " + result);
             } 
             if (operators[col].equals("/")) {
                 int result = rows.get(0)[col];
                 for (int i = 1; i < rows.size(); i++) {
                     result /= rows.get(i)[col];
                 }
-                System.out.println("The value of the column is: " + result + " in column " + col);
+                System.out.println("The value of column " + (col + 1) + " is " + result);
             }
         }
         scanner.close();
