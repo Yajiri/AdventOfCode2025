@@ -33,7 +33,8 @@ int main(void) {
             }
         int neighbors = 0;
 
-        for (int i = 0; i  < 8; i++) {
+        //checks in the order top-left, top, top-right, left, right, bottom-left, bottom, bottom-right.
+        for (int i = 0; i < 8; i++) {
             int nr = r + dr[i];
             int nc = c + dc[i];
 
