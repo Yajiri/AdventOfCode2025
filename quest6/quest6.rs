@@ -40,7 +40,7 @@ fn main() {
             for row in &grid {
                 result *= row[col];
             }
-        println!("The value is {} in column {}", result, col);
+        println!("The value of column {} is {}", col + 1, result);
         }
 
         else if ops[col] == "+" {
@@ -48,7 +48,7 @@ fn main() {
             for row in &grid {
                 result += row[col];
             }
-        println!("The value is {} in column {}", result, col);
+        println!("The value of column {} is {}", col + 1, result);
         }
 
         else if ops[col] == "-" {
@@ -56,7 +56,7 @@ fn main() {
             for row in &grid[1..] {
                 result -= row[col];
             }
-        println!("The value is {} in column {}", result, col);
+        println!("The value of column {} is {}", col + 1, result);
         }
         
         else if ops[col] == "/" {
@@ -64,7 +64,7 @@ fn main() {
             for row in &grid[1..] {
                 result /= row[col];
             }
-        println!("The value is {} in column {}", result, col);
+        println!("The value of column {} is {}", col + 1, result);
         }
     }
 }
