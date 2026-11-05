@@ -62,28 +62,28 @@ int main(void) {
                 for (int row = 0; row < rowCount; row++ ) {
                     result = result * rows[row][col];
                 }
-            printf("The Value of the column is: %d in column %d\n", result, col);
+            printf("The Value of the column %d is %d\n", col + 1, result);
             }
             if(ops[col] == '+') {
                 int result = 0;
                 for (int row = 0; row < rowCount; row++) {
                     result += rows[row][col];
                 }
-            printf("The Value of the column is: %d in column %d\n", result, col);
+            printf("The Value of the column %d is %d\n", col + 1, result);
             }
             if (ops[col] == '-') {
                 int result = rows[0][col];
                 for (int x = 1; x < rowCount; x++) {
                     result -= rows[x][col];
                 }
-            printf("The Value of the column is: %d in column %d\n", result, col);
+            printf("The Value of the column %d is %d\n", col + 1, result);
             }
             if (ops[col] == '/') {
                 int result = rows[0][col];
                 for (int x = 1; x < rowCount; x++){
                     result /= rows[x][col];
                 }
-            printf("The Value of the column is: %d in column %d\n", result, col);
+            printf("The Value of the column %d is %d\n", col + 1, result);
             }
         }
         printf("\n");
