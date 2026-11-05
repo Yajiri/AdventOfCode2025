@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string.h> 
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -18,7 +18,7 @@ char grid[10][11] = {
 int main(void) {
     int rows = sizeof(grid) / sizeof(grid[0]);
     int cols = sizeof(grid[0]) - 1; //removes the '\0'
-    
+
     int dr[] = {-1,-1,-1,0,0,1,1,1};
     int dc[] = {-1,0,1,-1,1,-1,0,1}; 
 
