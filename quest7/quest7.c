@@ -37,6 +37,7 @@ int main(void) {
             break;
         }
     }
+    
     for(int r = 1; r < rows - 1; r++) {
         for (int c = 0; c < cols; c++) {
             if (grid[r][c] == '|') {
@@ -49,8 +50,8 @@ int main(void) {
                     }
                 count++;
                 continue;
-                    }
-            else if (grid[r+1][c] == '.') {
+                }
+                else if (grid[r+1][c] == '.') {
                 grid[r+1][c] = '|';
                 }
             }
