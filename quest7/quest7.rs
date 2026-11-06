@@ -38,7 +38,7 @@ fn main() {
                 if grid[r+1][c] == '^' {
                     if c > 0 {
                         grid[r+1][c-1] = '|';
-                    } if c < cols {
+                    } if c + 1 < cols {
                         grid[r+1][c+1] = '|';
                     }
                 count += 1;
