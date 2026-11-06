@@ -2,22 +2,30 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-char grid[10][11] = {
-    "..@@.@@@@.",
-    "@@@.@.@.@@",
-    "@@@@@.@.@@",
-    "@.@@@@..@.",
-    "@@.@@@@.@@",
-    ".@@@@@@@.@",
-    ".@.@.@.@@@",
-    "@.@@@.@@@@",
-    ".@@@@@@@@.",
-    "@.@.@@@.@."
-};
+#define MAX_ROWS 1000
+#define MAX_COLS 1000
+
 
 int main(void) {
-    int rows = sizeof(grid) / sizeof(grid[0]);
-    int cols = sizeof(grid[0]) - 1; //removes the '\0'
+
+    char grid[MAX_ROWS][MAX_COLS];
+
+    FILE *file = fopen("input.txt", "r");
+    if (file == NULL) {
+        printf("Could not open input.txt\n");
+        return 1;
+    }
+    
+    int rows = 0;
+
+    while (fgets(grid[rows], MAX_COLS, file)) {
+        grid[rows][strcspn(grid[rows], "\n")] = '\0';
+        rows++;
+    }
+
+    fclose(file);
+
+    int cols = strlen(grid[0]);
 
     int dr[] = {-1,-1,-1,0,0,1,1,1};
     int dc[] = {-1,0,1,-1,1,-1,0,1}; 
