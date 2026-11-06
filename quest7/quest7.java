@@ -47,7 +47,7 @@ public class quest7 {
                     Doesn't matter in this case but just future profing if someone wants to try another pattern*/
                     if (c > 0) {
                     grid[r+1][c-1] = '|';
-                    } if (c + 1 < cols) {
+                    } else if (c + 1 < cols) {
                     grid[r+1][c+1] = '|';
                     }
                     count++;
