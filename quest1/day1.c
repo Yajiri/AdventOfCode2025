@@ -43,4 +43,3 @@ int main(void) {
     printf("Stopped at 0: %d amount of times.\n", x);
     return 0;
 }
-
