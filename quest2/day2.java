@@ -1,27 +1,34 @@
 package quest2;
-record Range(int start, int end) {}
+import java.io.*; //FileReader, IOException
+import java.util.*;
+
+record Range(long start, long end) {}
 
 public class day2 {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
 
-        Range[] ranges = {
-            new Range(11,22),
-            new Range(95, 115),
-            new Range(998, 1012),
-            new Range(1188511880, 1188511890),
-            new Range(222220, 222224),
-            new Range(1698522, 1698528),
-            new Range(446443, 446449),
-            new Range(38593856, 38593862)
-        };
+        BufferedReader br = new BufferedReader(new FileReader("quest2/input.txt")); 
+        String line = br.readLine();
+        br.close();
+        
+        ArrayList<Range> ranges = new ArrayList<>();
+        String[] tokens = line.split(",");
 
-        int invalidNumberValue = 0;
+        for (String token : tokens) {
+            String[] parts = token.split("-");
+
+            long start = Long.parseLong(parts[0]);
+            long end = Long.parseLong(parts[1]);
+
+           ranges.add(new Range(start, end));
+        } 
+        long invalidNumberValue = 0;
 
         for (Range range : ranges) {
-            int start = range.start();
-            int end = range.end();
-            for (int n = start; n <= end; n++){
-                String s = Integer.toString(n);
+            long start = range.start();
+            long end = range.end(); 
+            for (long n = start; n <= end; n++){
+                String s = Long.toString(n);
                 if (s.length() % 2 == 0) {
                     int half = s.length() /2;
                     String left = s.substring(0, half);
@@ -29,7 +36,7 @@ public class day2 {
 
                     if (left.equals(right)) {
                         System.out.println(n);
-                        invalidNumberValue = invalidNumberValue + n;
+                        invalidNumberValue += n;
                     }
                 }
 
