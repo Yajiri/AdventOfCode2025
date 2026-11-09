@@ -1,13 +1,16 @@
-use std::fs;
-
 fn main() {
-    let contents = fs::read_to_string("input.txt")
-        .expect("Could not read input.txt");
-    
-    let grid:Vec<Vec<char>> = contents
-        .lines()
-        .map(|line| line.chars().collect())
-        .collect(); 
+    let grid: Vec<Vec<char>> = vec![
+    "..@@.@@@@.".chars().collect(),
+    "@@@.@.@.@@".chars().collect(),
+    "@@@@@.@.@@".chars().collect(),
+    "@.@@@@..@.".chars().collect(),
+    "@@.@@@@.@@".chars().collect(),
+    ".@@@@@@@.@".chars().collect(),
+    ".@.@.@.@@@".chars().collect(),
+    "@.@@@.@@@@".chars().collect(),
+    ".@@@@@@@@.".chars().collect(),
+    "@.@.@@@.@.".chars().collect()
+];
 
 let rows = grid.len();
 let cols = grid[0].len();
