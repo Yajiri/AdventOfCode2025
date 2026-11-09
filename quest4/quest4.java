@@ -1,23 +1,22 @@
 package quest4;
-import java.io.*;
-import java.util.*;
 
 
 public class quest4 {
-    public static void main(String[] args) throws IOException{
-    ArrayList<String> lines = new ArrayList<>();
+    public static void main(String[] args){
+
+        String[] grid = {
+            "..@@.@@@@.",
+            "@@@.@.@.@@",
+            "@@@@@.@.@@",
+            "@.@@@@..@.",
+            "@@.@@@@.@@",
+            ".@@@@@@@.@",
+            ".@.@.@.@@@",
+            "@.@@@.@@@@", 
+            ".@@@@@@@@.",
+            "@.@.@@@.@."
+        };
     
-    BufferedReader br = new BufferedReader(new FileReader("quest4/input.txt"));
-
-    String line;
-    while ((line = br.readLine()) != null) {
-        lines.add(line);
-    }
-    
-    br.close();
-
-    String[] grid = lines.toArray(new String[0]);
-
     int rows = grid.length;
     int cols = grid[0].length();
 
