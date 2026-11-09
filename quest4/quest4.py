@@ -1,10 +1,15 @@
-#better this way, else I need to fix the path every single time based on where I am in the terminal when I want to run the script
-from pathlib import Path
-
-script_dir = Path(__file__).parent
-input_file = script_dir / "input.txt"
-with open(input_file, "r") as f:
-    grid = [line.strip() for line in f]
+grid = [
+    "..@@.@@@@.",
+    "@@@.@.@.@@",
+    "@@@@@.@.@@",
+    "@.@@@@..@.",
+    "@@.@@@@.@@",
+    ".@@@@@@@.@",
+    ".@.@.@.@@@",
+    "@.@@@.@@@@",
+    ".@@@@@@@@.",
+    "@.@.@@@.@."  
+];
 
 rows = len(grid)
 cols = len(grid[0])
