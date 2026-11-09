@@ -1,25 +1,22 @@
 #include <vector>
 #include <string> 
 #include <iostream>
-#include <fstream>
 
 using namespace std;
 
 int main() {
-    vector<string> grid;
-
-    ifstream file("input.txt");
-
-    if(!file) {
-        cout << "Could not open input.txt\n";
-        return 1;
-    }
-
-    string line;
-
-    while (getline(file, line)) {
-        grid.push_back(line);
-    }
+    vector<string> grid = {
+        "..@@.@@@@.",
+        "@@@.@.@.@@",
+        "@@@@@.@.@@",
+        "@.@@@@..@.",
+        "@@.@@@@.@@",
+        ".@@@@@@@.@",
+        ".@.@.@.@@@",
+        "@.@@@.@@@@",
+        ".@@@@@@@@.",
+        "@.@.@@@.@."      
+    };
 
     int rows = grid.size();
     int cols = grid[0].size();
