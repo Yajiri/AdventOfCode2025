@@ -5,19 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-/*can be done as this
-struct Range {
-    int start;
-    int end;
-};
-
-std::vector<Range> ranges {
-    {11,22},
-    {95,115},
-    {998,1012}
-};
-*/
-//but there's a super command that combines them...
 
 using namespace std;
 int main() {
