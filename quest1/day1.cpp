@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -9,17 +10,17 @@ int main() {
     int x = 0;
     string command;
 
-    while (true) {
-        cout << "Enter command: ";
-        cin >> command;
+    ifstream file("input.txt");
 
-        //Converting the command to uppercase to ensure that it works with the later code
+    if (!file) {
+        cout << "could not open file." << endl;
+        return 1;
+    }
+
+    while (file >> command) {
+        
         for (char &c : command) {
             c = toupper(c);
-        }
-
-        if (command == "DONE") {
-            break;
         }
 
         char direction = command[0];
