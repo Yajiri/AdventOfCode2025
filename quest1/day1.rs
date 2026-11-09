@@ -1,21 +1,19 @@
-use std::io;
+use std::fs;
+//fs stands for file system, used in order to read from a file. fs::read_to_string
+//use std::io this let's you do stdin(), stdout(), BufReader, Read, Write.
 
 fn main(){
+let commands = fs::read_to_string("input.txt")
+    .expect("could not read the input file");
+
     let mut start_point = 50;
     let mut x = 0;
 
-    loop{
-        println!("Command:");
-
-        let mut command = String::new();
-        io::stdin()
-            .read_line(&mut command)
-            .expect("Failed to read input");
-        
+    for command in commands.lines() {
             let command = command.trim().to_uppercase();
 
-            if command == "DONE" {
-                break;
+            if command.is_empty() {
+                continue;
             }
 
             let direction = command.chars().next().unwrap();
