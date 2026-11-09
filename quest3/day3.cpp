@@ -6,9 +6,6 @@
 using namespace std;
 
 int main() {
-    int largest = 0;
-    int secondLargest = 0;
-    int startIndex = 0;
     string stringOfNumbers;
 
     ifstream file("input.txt");
@@ -19,7 +16,6 @@ int main() {
     }
 
     long long total = 0;
-    long long len = stringOfNumbers.length();
 
     while (getline(file, stringOfNumbers)) {
         long long largest = 0;
