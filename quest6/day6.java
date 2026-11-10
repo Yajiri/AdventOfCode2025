@@ -1,67 +1,71 @@
 package quest6;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 public class day6 {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<int[]> rows = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
 
-        while(true) {
-            System.out.println("Please enter the sequence of numbers split by spacing (line by line), when done type done:");
-            String lineOfNumbers = scanner.nextLine();
+        BufferedReader br = new BufferedReader(new FileReader("quest6/input.txt"));
+        ArrayList<ArrayList<Long>> numbers = new ArrayList<>();
+        ArrayList<String> operators = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>();
+        String line;
+        long finalResult = 0;
 
-            //break the while loop
-            if (lineOfNumbers.equalsIgnoreCase("DONE")) {
-                break;
-            }
-
-            String[] numbers = lineOfNumbers.trim().split("\\s+");
-
-            int[] number = new int[numbers.length];
-
-            //loop and enters the numbers as arrays into the grid.
-            for (int i = 0; i < numbers.length; i++) {
-                number[i] = Integer.parseInt(numbers[i]);
-            }
-
-        rows.add(number);
+        while ((line = br.readLine()) != null) {
+            lines.add(line.trim());
         }
-        System.out.println("Enter operators: ");
-        String[] operators = scanner.nextLine().trim().split("\\s+");
-        int len = operators.length;
+        String operatorLine = lines.get(lines.size() - 1);
+        String[] ops = operatorLine.split("\\s+");
+        for (String op : ops ) {
+            operators.add(op);
+        }
+        for (int i = 0; i < lines.size() - 1; i++) {
+            ArrayList<Long> row = new ArrayList<>();
+            String[] nums = lines.get(i).split("\\s+");
+            for (String num : nums) {
+                row.add(Long.parseLong(num));
+            }
+            numbers.add(row);
+        }
+
+        int len = operators.size();
+
         for (int col = 0; col < len; col ++) {
-            if(operators[col].equals("*")) {
-                int result = 1;
-                for (int[] row : rows) {
-                    result *= row[col];
+            if(operators.get(col).equals("*")) {
+                long result = 1;
+                for (ArrayList<Long> row : numbers) {
+                    result *= row.get(col);
                 }
-                System.out.println("The value of column " + (col + 1) + " is " + result);
+                finalResult += result;
             } 
-            if (operators[col].equals("+")) {
-                int result = 0;
-                for (int[] row : rows) {
-                    result += row[col];
+            if (operators.get(col).equals("+")) {
+                long result = 0;
+                for (ArrayList<Long> row : numbers) {
+                    result += row.get(col);
                 }
-                System.out.println("The value of column " + (col + 1) + " is " + result);
+                finalResult += result;
             } 
             //adding subtraction and division functions just to be safe...
-            if (operators[col].equals("-")) {
-                int result = rows.get(0)[col];
-                for (int i = 1; i < rows.size(); i++) {
-                    result -= rows.get(i)[col];
+            if (operators.get(col).equals("-")) {
+                long result = numbers.get(0).get(col);
+                for (int i = 1; i < numbers.size(); i++) {
+                    result -= numbers.get(i).get(col);
                 }
-                System.out.println("The value of column " + (col + 1) + " is " + result);
+                finalResult += result;
             } 
-            if (operators[col].equals("/")) {
-                int result = rows.get(0)[col];
-                for (int i = 1; i < rows.size(); i++) {
-                    result /= rows.get(i)[col];
+            if (operators.get(col).equals("/")) {
+                long result = numbers.get(0).get(col);
+                for (int i = 1; i < numbers.size(); i++) {
+                    result /= numbers.get(i).get(col);
                 }
-                System.out.println("The value of column " + (col + 1) + " is " + result);
+                finalResult += result;
             }
         }
-        scanner.close();
+        System.out.print("The final result is: " + finalResult);
+        br.close();
     }
 }
