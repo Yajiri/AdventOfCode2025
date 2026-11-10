@@ -1,46 +1,65 @@
-#include <vector> 
-#include <utility>
+#include <vector>
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <fstream>
 
 using namespace std;
 
+struct Range {
+    long long start;
+    long long end;
+};
+
 int main() {
-    vector<pair<int,int>> ranges {
-        {3,5},
-        {10,14},
-        {16,20},
-        {12,18}
-    };
+    ifstream file("input.txt");
 
-    vector<int> numbers;
-    int number;
-
-    cout << "Please enter numbers separated by spaces: ";
-    
-    string line;
-    getline(cin, line);
-
-    stringstream ss(line);
-
-    while (ss >> number) {
-        numbers.push_back(number);
+    if(!file) {
+        cout << "Could not open the file";
+        return 1;
     }
-    for (int number : numbers) {
+    
+    int totalFreshItems = 0;
+    vector<Range> ranges;
+    vector<long long> numbers;
+
+    string line;
+    bool readingRanges = true;
+
+    while (getline(file, line)) {
+
+        if (line.empty()) {
+            readingRanges = false;
+            continue;
+        }
+        if (readingRanges) {
+            size_t dashPos = line.find('-');
+
+            long long start = stoll(line.substr(0, dashPos));
+            long long end = stoll(line.substr(dashPos + 1));
+
+            ranges.push_back({start, end});
+        } else {
+            numbers.push_back(stoll(line));
+        }
+    }
+    file.close();
+
+    for (const auto& number : numbers) {
         bool fresh = false;
         for (auto range : ranges) {
-            if (number >= range.first && number <= range.second){
+            if (number >= range.start && number <= range.end){
             fresh = true;
+            totalFreshItems++;
             break;
+                }
             }
-        }
-        if (fresh == true){
+        /* if (fresh == true){
             cout << number
                  << "is fresh!\n";
         } else {
             cout << number
                  << "is not fresh!\n";
-        }    
+        } */   
     }
+    cout << "The total amount of fresh items are: " << totalFreshItems;
 }
