@@ -1,70 +1,67 @@
-use std::io;
+use std::fs;
 
 fn main() {
-    //same as in java with it's ArrayList<int[]> rows = new ArrayList<>();
-    let mut grid: Vec<Vec<i32>> = Vec::new();
+    let contents = fs::read_to_string("input.txt")
+            .expect("This file can't be found");
+ 
+    let mut numbers: Vec<Vec<i64>> = Vec::new();
+    let mut final_result = 0 as i64;
+    //collects all lines in a string variable.
+    let all_lines: Vec<&str> = contents.lines().collect();
+
+    //sets the last line to be the operator line
+    let operators: Vec<char> = all_lines
+        .last()
+        .unwrap()
+        .split_whitespace()
+        .map(|s| s.chars().next().unwrap())
+        .collect();
     
-    loop{
-        println!("Please enter numbers split by spaces (enter done when done)");
-
-        let mut numbers = String::new();
-        io::stdin().read_line(&mut numbers).unwrap();
-
-        let numbers = numbers.trim();
-
-        //makes it ignore uppcase and lowercase. 
-        if numbers.eq_ignore_ascii_case("DONE") {
-            break;
-        }
-        let row: Vec<i32> = numbers
+    //rolls through everything except the last line and adds them to the numbers grid
+    for line in &all_lines[..all_lines.len() - 1] {
+        let row: Vec<i64> = line
             .split_whitespace()
-            .map(|s| s.parse().unwrap())
+            .map(|s| s.parse::<i64>().unwrap())
             .collect();
-        
-        grid.push(row);       
+        numbers.push(row);
     }
 
-    println!("Please enter the operators split by spaces");
-    let mut operators = String::new();
-    io::stdin().read_line(&mut operators).unwrap();
-
-    let operators = operators.trim();
-
-    let ops: Vec<&str> = operators
-        .split_whitespace()
-        .collect();
-
-    for col in 0..ops.len() {
-        if ops[col] == "*" {
+    for col in 0..operators.len() {
+        if operators[col] == '*' {
             let mut result = 1;
-            for row in &grid {
+            for row in &numbers {
                 result *= row[col];
             }
-        println!("The value of column {} is {}", col + 1, result);
+        final_result = final_result + result;
+        //println!("The value of column {} is {}", col + 1, result);
         }
 
-        else if ops[col] == "+" {
+        else if operators[col] == '+' {
             let mut result = 0;
-            for row in &grid {
+            for row in &numbers {
                 result += row[col];
             }
-        println!("The value of column {} is {}", col + 1, result);
+        final_result = final_result + result;
+        //println!("The value of column {} is {}", col + 1, result);
         }
 
-        else if ops[col] == "-" {
-            let mut result = grid[0][col];
-            for row in &grid[1..] {
+        else if operators[col] == '-' {
+            let mut result = numbers[0][col];
+            for row in &numbers[1..] {
                 result -= row[col];
             }
-        println!("The value of column {} is {}", col + 1, result);
+        final_result = final_result + result;
+        //println!("The value of column {} is {}", col + 1, result);
         }
         
-        else if ops[col] == "/" {
-            let mut result = grid[0][col];
-            for row in &grid[1..] {
+        else if operators[col] == '/' {
+            let mut result = numbers[0][col];
+            for row in &numbers[1..] {
                 result /= row[col];
             }
-        println!("The value of column {} is {}", col + 1, result);
+        final_result = final_result + result;
+        //println!("The value of column {} is {}", col + 1, result);
         }
     }
+    println!("The final result is: {}", final_result);
 }
