@@ -36,16 +36,15 @@ vector<Pair> getShortest1000(const vector<vector<int>>&points) {
         });
         for (int k = 0; k < 1000; k++) {
             const Pair& p = pairs[k];
-
             
-            cout << points[p.i][0] << ","
+            /*cout << points[p.i][0] << ","
                  << points[p.i][1] << ","
                  << points[p.i][2] << "<->"
                  << points[p.j][0] << ","
                  << points[p.j][1] << ","
                  << points[p.j][2] 
                  << " distance² = "
-                 << p.distance << '\n';
+                 << p.distance << '\n';*/
         }
         return vector<Pair>(pairs.begin(), pairs.begin() + 1000);
     }
