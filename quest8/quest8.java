@@ -69,6 +69,7 @@ static ArrayList<Pair> getShortest10(int[][] points) {
         }
     return new ArrayList<>(pairs.subList(0, 10));
     }
+    
 static int solution(int[][] points) {
         HashSet<Integer> visited = new HashSet<>();
         ArrayList<Integer> sizes = new ArrayList<>();
