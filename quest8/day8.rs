@@ -121,11 +121,8 @@ fn main() -> std::io::Result<()>{
     Ok(())
 }
 //This one will panic if the reading fails. 
-/*fn main() -> std::io::Result<()> {
-    let points = read_points_from_file("input.txt", 1000)?;  // propagates error if any
-
+/*fn main() {
+    let points = read_points_from_file("input.txt", 1000).unwrap();
     let ans = solution(&points);
     println!("solution = {}", ans);
-
-    Ok(())
 } */
