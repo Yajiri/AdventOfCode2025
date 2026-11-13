@@ -25,11 +25,6 @@ fn get_shortest_10(points: &[[i64; 3]]) -> Vec<Pair> {
     }
     pairs.sort_by_key(|p| p.distance);
 
-    for k in 0..pairs.len().min(1000) {
-        let p = &pairs[k];
-        println!("distance = {}, i = {}, j = {}", p.distance, p.i, p.j);
-    }
-
     let n = pairs.len().min(1000);
     pairs.into_iter().take(n).collect()
 }
@@ -72,7 +67,6 @@ fn solution(points: &[[i64; 3]]) -> i64 {
             }
         }
         sizes.push(size);
-        println!("component starting at {} has size {}", start, size);
     }
 
     if sizes.len() < 3 {
