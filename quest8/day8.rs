@@ -110,6 +110,7 @@ fn read_points_from_file(filename: &str, max_points: usize) -> io::Result<Vec<[i
     Ok(points)
 }
 
+//this will show me if there are any errors. 
 fn main() -> std::io::Result<()>{
     //going to change this into being an input... from .txt file...
     let points = read_points_from_file("input.txt", 1000)?;
@@ -119,3 +120,12 @@ fn main() -> std::io::Result<()>{
 
     Ok(())
 }
+//This one will panic if the reading fails. 
+/*fn main() -> std::io::Result<()> {
+    let points = read_points_from_file("input.txt", 1000)?;  // propagates error if any
+
+    let ans = solution(&points);
+    println!("solution = {}", ans);
+
+    Ok(())
+} */
