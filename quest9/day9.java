@@ -35,6 +35,6 @@ public class day9 {
             }
         }
         br.close();
-        System.out.println("The largest area of a gird is: " + largest);
+        System.out.println("The largest area of a grid is: " + largest);
     }
 }
