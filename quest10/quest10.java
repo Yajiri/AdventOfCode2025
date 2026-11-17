@@ -48,9 +48,9 @@ public class quest10 {
         };
 
         String[] names = {
-            "Config 0 [.##.]",
-            "Config 1 [...#.]", 
-            "Config 2 [.###.#]"
+            "Config 1 [.##.]",
+            "Config 2 [...#.]", 
+            "Config 3 [.###.#]"
         };
 
         // sum of best presses for all configs

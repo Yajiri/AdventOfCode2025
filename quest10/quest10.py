@@ -70,9 +70,9 @@ def main():
     ]
 
     names = [
-        "Config 0 [.##.]",
-        "Config 1 [...#.]", 
-        "Config 2 [.###.#]"
+        "Config 1 [.##.]",
+        "Config 2 [...#.]", 
+        "Config 3 [.###.#]"
     ]
 
     total_value = 0
