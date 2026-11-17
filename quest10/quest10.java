@@ -53,13 +53,15 @@ public class quest10 {
             "Config 2 [.###.#]"
         };
 
-        int totalValue = 0; // sum of best presses for all configs
+        // sum of best presses for all configs
+        int totalValue = 0; 
 
         // Loop through all configurations
         for (int i = 0; i < targets.length; i++) {
             int best = solveAndReturnBest(targets[i], allButtons[i]);
             System.out.println(names[i] + " - Minimum amount of presses = " + best);
-            totalValue += best; // add this config's best to the total
+            // add this config's best to the total
+            totalValue += best; 
         }
 
         System.out.println("Total value (sum of all best presses) = " + totalValue);
