@@ -61,7 +61,7 @@ def main():
             #parse buttons
             buttons = []
             #time to explain the re.findall 
-            #\( ... this is find...
+            #\( ... this is find (
             #.* = any character ... repeated so zero*or more times
             #? is important to avoid greed without it it won't move on to the last thing 
             #() capture block 
