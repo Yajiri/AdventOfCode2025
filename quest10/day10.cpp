@@ -78,8 +78,8 @@ int main() {
 
             for (sregex_iterator it(line.begin(), line.end(), buttonPattern);
                 it != sregex_iterator();
-                    ++it)
-                {
+                    ++it) {
+
             vector<int> button;
             string buttonStr = (*it)[1];
             stringstream ss(buttonStr);
