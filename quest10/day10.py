@@ -41,6 +41,11 @@ def main():
             line = line.strip()
 
             #parses targets
+            #regex explenation... \[ = find [
+            #[.#] = match either . or #
+            #the + indicates that we need to find one or more... so loop
+            # the () creates a capturing group, ([.#]) saves the part that matched. 
+            #\] = find ] ... so this end the loop.
             target_match = re.search(r"\[([.#]+)\]", line)
 
             if not target_match:
@@ -55,6 +60,12 @@ def main():
 
             #parse buttons
             buttons = []
+            #time to explain the re.findall 
+            #\( ... this is find...
+            #.* = any character ... repeated so zero*or more times
+            #? is important to avoid greed without it it won't move on to the last thing 
+            #() capture block 
+            #\) find this and end.
             for button_text in re.findall(r"\((.*?)\)", line):
                 button = [
                     int(x)
