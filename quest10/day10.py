@@ -83,5 +83,6 @@ def main():
 
     print(f"Total value (sum of all best presses) = {total_value}")
 
+#This is just to ensure that we don't run the main() if some other file want to inherit functions from the python file.
 if __name__ == "__main__":
     main()
