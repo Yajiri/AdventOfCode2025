@@ -44,7 +44,7 @@ public class day10 {
                 while (buttonMatcher.find()) {
                     ArrayList<Integer> button = new ArrayList<>();
                     //group(1) the one is because there's only one capture group (.*?) but say you had more like in the case of 
-                    //Pattern.compile("(\\d+),(\\d+)") then group 0 would combine them, group(1) would only be the first capture block and group(2) is jsut the second one.
+                    //Pattern.compile("(\\d+),(\\d+)") then group 0 would combine them, group(1) would only be the first capture block and group(2) is just the second one.
                     String[] numbers = buttonMatcher.group(1).split(",");
                     for (String num : numbers) {
                         button.add(Integer.parseInt (num.trim()));
