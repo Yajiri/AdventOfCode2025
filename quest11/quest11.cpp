@@ -31,7 +31,6 @@ void search(Node* current, unordered_map<string, vector<string>>& graph) {
         }
 
         const vector<string>& moves = it->second;
-
         for (const string& move : moves) {
             if(existInParents(current, move)) {
                 continue;
