@@ -58,12 +58,15 @@ def main():
     graph = {}
 
     for line in grid:
-        parts = line.split(": ")
+        parts = line.split(":")
+        if len(parts) != 2:
+                    print("Invlaid line: ", line)
+                    continue
         from_node = parts[0]
 
         #Java ArrayList<String> move = new ArrayList<>();
         moves = []
-        for move in parts[1].split(" "):
+        for move in parts[1].split():
             moves.append(move)
         graph[from_node] = moves
     search(root, graph)
