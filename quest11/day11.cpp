@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -83,22 +84,28 @@ int main() {
 
     for (const string& line :grid) {
         size_t colon = line.find(": ");
+
+        if(colon == string::npos) {
+            cerr << "Invalid Line: " << line << '\n';
+            continue;
+        }
+
         string from = line.substr(0, colon);
         string rest = line.substr(colon + 2); //+ 2 is just to avoid the : and the " ".
 
         vector<string> moves;
 
+        istringstream iss(rest);
+        string move;
+        while (iss >> move) {
+            moves.push_back(move);
+        }
+
+        graph[from] = moves;
+
         size_t start = 0;
         size_t end;
 
-        //npos stands for No position, and it's a safety net for if there are no spaces. std is there... cause it looks cleaner, you might as well remove if for functionality.
-        while ((end = rest.find(' ', start)) != std::string::npos) {
-            moves.push_back(rest.substr(start, end - start));
-            start = end + 1;
-        }
-        moves.push_back(rest.substr(start));
-
-        graph[from] = moves;
     }
     search(root, graph);
     printTree(root, 0);
