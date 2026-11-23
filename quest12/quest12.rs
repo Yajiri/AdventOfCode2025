@@ -44,7 +44,6 @@ fn generate_rotations(net: &Net) -> Vec<Net> {
         }
         current = rotate_90(&current);
     }
-
     forms
 }
 
@@ -85,7 +84,6 @@ fn fits(
             }
         }
     }
-
     true
 }
 
