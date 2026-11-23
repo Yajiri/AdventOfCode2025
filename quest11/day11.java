@@ -83,10 +83,14 @@ static int countPaths(Node node) {
             HashMap<String, ArrayList<String>> graph = new HashMap<>();
 
             for (String line : grid) {
-                String[] parts = line.split(": ");
-                String from = parts[0];
+                String[] parts = line.split(":");
+                if (parts.length != 2) {
+                    System.err.println("Invalid line: " + line);
+                    continue;
+                }
+                String from = parts[0].trim();
                 ArrayList<String> moves = new ArrayList<>();
-                for (String move : parts[1].split(" ")) {
+                for (String move : parts[1].trim().split("\\s+")) {
                     moves.add(move);
                 }
                 graph.put(from, moves);
