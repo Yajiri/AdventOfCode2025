@@ -332,7 +332,6 @@ public static void main(String[] args) throws IOException {
                         else {
                             System.out.print(".");
                         }
-                        //might need println here
                     }
                 System.out.println();
                 }
