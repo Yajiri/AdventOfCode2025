@@ -36,12 +36,60 @@ static boolean allCountsZero(int[] counts) {
             return false;
         }
     }
-    return false; 
+    return true; 
 }
 
-static Net rotate90(Net net) { return null; }
+static Net rotate90(Net net) { 
+    int h = net.size();
+    int w = net.get(0).size();
+    Net rotated = new Net();
 
-static List<Net> generateRotations(Net net) {return null; }
+    for (int x = 0; x < w; x++) {
+        List<Character> row = new ArrayList<>();
+        for (int y = 0; y < h; y++) {
+            row.add('.');
+        }
+        rotated.add(row);
+    }
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            rotated.get(x).set(h - 1- y, net.get(y).get(x));
+        }
+    }
+    return rotated; 
+}
+
+static Net cloneNet(Net net) {
+    Net copy = new Net();
+
+    for (List<Character> row : net) {
+        copy.add(new ArrayList<>(row));
+    }
+    return copy;
+}
+
+static List<Net> generateRotations(Net net) {
+        List<Net> forms = new ArrayList<>();
+
+        Net current = cloneNet(net);
+
+        for (int i = 0; i < 4; i++) {
+            boolean alreadySeen = false;
+
+            for (Net form : forms) {
+                if (form.equals(current)) {
+                    alreadySeen = true;
+                    break;
+                }
+            }
+            if (!alreadySeen) {
+                forms.add(cloneNet(current));
+            }
+            current = rotate90(current);
+        }
+    return forms; 
+}
+
 static int netArea(Net net) {
     int area = 0;
     for(List<Character> row : net) {
@@ -55,21 +103,156 @@ static int netArea(Net net) {
 }
 
 static boolean fits(Board board, Net net, int startX, int startY) { 
-    //to be implemented
-    return false; }
+        for (int y = 0; y < net.size(); y++) {
+            for (int x = 0; x < net.get(0).size(); x++) {
+                if (net.get(y).get(x) != '#') {
+                    continue;
+                }
+                int boardX = startX + x;
+                int boardY = startY + y;
+
+                if (boardY >= board.size() || boardX >= board.get(0).size()) {
+                    return false;
+                }
+                if (board.get(boardY).get(boardX) > 0) {
+                    return false;
+                }
+            }
+        }
+    return true; 
+}
+
 static void place_piece(Board board, Net net, int startX, int startY) {
-    //to be implemented
+    for (int y = 0; y < net.size(); y++) {
+        for (int x = 0; x < net.get(0).size(); x++) {
+            if (net.get(y).get(x) == '#') {
+                int current = board.get(startY + y).get(startX + x);
+                board.get(startY + y).set(startX + x, current + 1);
+            }
+        }
+    }
 }
+
 static void remove_piece(Board board, Net net, int startX, int startY) {
-    //to be implemented
+    for (int y = 0; y < net.size(); y++) {
+        for (int x = 0; x < net.get(0).size(); x++) {
+            if (net.get(y).get(x) == '#') {
+                int current = board.get(startY + y).get(startX + x);
+                board.get(startY + y).set(startX + x, current - 1);
+            }
+        }
+    }
 }
+
 static boolean solve(Board board, List<List<Net>> netsWithRotations, int[] counts, long[] nodesExplored, long nodeLimit) {
-    //to be implemented
+    if (nodesExplored[0] > nodeLimit) {
+        return false;
+    }
+    if (allCountsZero(counts)) {
+        return true;
+    }
+    for (int pieceIndex = 0; pieceIndex < netsWithRotations.size(); pieceIndex++) {
+        if (counts[pieceIndex] == 0) {
+            continue;
+        }  
+        for (Net net : netsWithRotations.get(pieceIndex)) {
+            for (int y = 0; y < board.size(); y++) {
+                for (int x = 0; x < board.get(0).size(); x++) {
+                    nodesExplored[0]++;
+                    if (nodesExplored[0] > nodeLimit) {
+                        return false;
+                    }
+                    if (!fits(board, net, x, y)) {
+                        continue;
+                    }
+                    place_piece(board, net, x, y);
+                    counts[x] -= 1;
+
+                    if (solve(board, netsWithRotations, counts, nodesExplored, nodeLimit)) {
+                        return true;
+                    }
+                    counts[pieceIndex] += 1;
+                    remove_piece(board, net, x, y);
+                }
+            }
+        } 
+    }
     return false;
 }
+
 static ParsedInput parseInput(String path) throws IOException { 
-    //to be implemented
-    return null; 
+    BufferedReader br = new BufferedReader(new FileReader(path));
+    List<Net> nets = new ArrayList<>();
+    List<Puzzle> puzzles = new ArrayList<>();
+    List<String> lines = new ArrayList<>();
+    String line;
+
+    while ((line = br.readLine()) != null) {
+        lines.add(line);
+    }
+    br.close();
+
+    int i = 0;
+    while (i < lines.size()) {
+        line = lines.get(i).trim();
+        if (line.isEmpty()) {
+            i++;
+            continue;
+        }
+        //net header
+        if (line.endsWith(":") && line.substring(0, line.length() - 1).matches("\\d+")) {
+            Net net = new Net();
+            i++;
+
+            while ( i < lines.size()) {
+                String nextLine = lines.get(i).trim();
+                if (nextLine.isEmpty()) {
+                    i++;
+                    break;
+                }
+                if (nextLine.matches("[#.]+")) {
+                    List<Character> row = new ArrayList<>();
+                    for (char c : nextLine.toCharArray()) {
+                        row.add(c);
+                    }
+                    net.add(row);
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            if (!net.isEmpty()) {
+                nets.add(net);
+            }
+            continue;
+        }
+        //puzzle line with width x height: counts...
+        int colonPos = line.indexOf(':');
+
+        if (colonPos != -1) {
+            String dimsPart = line.substring(0, colonPos).trim();
+            String rest = line.substring(colonPos + 1).trim();
+            int xPos  = dimsPart.indexOf('x');
+
+            if (xPos != -1) {
+                try {
+                    int width = Integer.parseInt(dimsPart.substring(0, xPos).trim());
+                    int height = Integer.parseInt(dimsPart.substring(xPos + 1).trim());
+                    String[] parts = rest.split("\\s+");
+                    int[] requirements = new int[parts.length];
+
+                    for (int j = 0; j < parts.length; j++) {
+                        requirements[j] = Integer.parseInt(parts[j]);
+                    }
+                    puzzles.add(new Puzzle(width, height, requirements));
+                } catch (NumberFormatException e) {
+                    System.out.println("Malformed puzzle line");
+                }
+            }
+        }
+        i++;
+    }
+    return new ParsedInput(nets, puzzles);
 }
 
 
