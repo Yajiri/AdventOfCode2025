@@ -1,7 +1,11 @@
+from pathlib import Path
+dir = Path(__file__).parent
+file = dir / "input.txt"
+
 startpoint = 50
 x = 0
 
-with open("quest1/input.txt", "r") as file:
+with open(file, "r") as file:
     for line in file:
         command = line.strip().upper()
 
